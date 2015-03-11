@@ -1,0 +1,23 @@
+---
+layout: main
+title: Office hours
+---
+<h3>Office hours <small>{{ site.data.active.start_date }} - {{ site.data.active.end_date }}</small></h3>
+<table class="table timetable">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Time</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for time in site.data.times %}
+    <tr>
+      <td>{{ time.day }}</td>
+      <td>{{ time.start }} - {{ time.end }}</td>
+      <td>{{ time.location }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

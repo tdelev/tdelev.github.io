@@ -1,0 +1,14 @@
+- day: Wednesday
+  start: "11:00"
+  end: "15:30"
+  location: Lab. 26
+
+- day: Thursday
+  start: "8:00"
+  end: "12:30"
+  location: Lab. 3
+
+- day: Friday
+  start: "10:30"
+  end: "12:00"
+  location: Lab. 3
