@@ -1,14 +1,4 @@
-- day: Среда
-  start: "11:00"
-  end: "15:30"
-  location: Лаб. 26
-
-- day: Четврток
-  start: "8:00"
-  end: "12:30"
-  location: Лаб. 3
-
-- day: Петок
-  start: "10:30"
-  end: "12:00"
-  location: Лаб. 3
+- day: Вторник
+  start: "14:00"
+  end: "15:00"
+  location: Канцеларија во анексот на МФ/ФЕИТ
