@@ -146,7 +146,6 @@ where you substitute `49157` with your PORT number.
 
 ## Presentation
 
-[Here](http://tdelev.github.io/presentations/docker/#/) you can view my 
-presentation on a [JugMK technical session](http://jug.mk/event/tech-session/2015-03-25-javascript-docker.html).
+[Here](http://tdelev.github.io/presentations/docker/#/) you can view my presentation on a [JugMK technical session](http://jug.mk/event/tech-session/2015-03-25-javascript-docker.html).
 
 
