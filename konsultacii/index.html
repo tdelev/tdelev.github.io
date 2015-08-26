@@ -1,24 +1,26 @@
 ---
-layout: main
+layout: page
 title: Консултации
 ---
-<h3>Термини за консултации <small>{{ site.data.active.start_date }} - {{ site.data.active.end_date }}</small></h3>
+<h2>
+  <small>{{ site.data.active.start_date }} - {{ site.data.active.end_date }}</small>
+</h2>
 <p class="text-danger">{{ site.data.active.message_mk }}</p>
 <table class="table timetable">
   <thead>
-    <tr>
-      <th>Ден</th>
-      <th>Време</th>
-      <th>Локација</th>
-    </tr>
+  <tr>
+    <th>Ден</th>
+    <th>Време</th>
+    <th>Локација</th>
+  </tr>
   </thead>
   <tbody>
-    {% for time in site.data.times_mk %}
-    <tr>
-      <td>{{ time.day }}</td>
-      <td>{{ time.start }} - {{ time.end }}</td>
-      <td>{{ time.location }}</td>
-    </tr>
-    {% endfor %}
+  {% for time in site.data.times_mk %}
+  <tr>
+    <td>{{ time.day }}</td>
+    <td>{{ time.start }} - {{ time.end }}</td>
+    <td>{{ time.location }}</td>
+  </tr>
+  {% endfor %}
   </tbody>
 </table>

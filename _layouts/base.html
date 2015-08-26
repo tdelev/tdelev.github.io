@@ -3,15 +3,18 @@
 {% include head.html %}
 
 <body>
-  {% include navigation.html %}
+{% include navigation.html %}
 
-  {% include page-header.html %}
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      {{ content }}
-    </div>
-  </article>
+{% include page-header.html %}
+<!-- Post Content -->
+<article>
+  <div class="container">
+    {{ content }}
+  </div>
+</article>
+
+<hr/>
+{% include footer.html %}
 </body>
 
 </html>

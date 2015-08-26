@@ -1,0 +1,11 @@
+<header>
+  <div class="blog-masthead">
+    <div class="container">
+      <nav class="blog-nav">
+        <a class="blog-nav-item {% if page.url == " /index.html " %}active{% endif %}" href="/">Home</a>
+        <a class="blog-nav-item {% if page.url contains " /office " %}active{% endif %}" href="/office">Office hours</a>
+        <a class="blog-nav-item {% if page.url contains " /about " %}active{% endif %}" href="/about">About</a>
+      </nav>
+    </div>
+  </div>
+</header>

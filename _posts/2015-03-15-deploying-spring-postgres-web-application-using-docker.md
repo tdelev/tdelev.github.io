@@ -1,9 +1,8 @@
 ---
-layout: main
+layout: post
 title: Deploying Spring and Postgres Web Application using Docker
+subtitle: Something about docker
 ---
-
-# Deploying Spring and Postgres Web Application using Docker
 
 After getting familiar with Docker, I wanted to use to deploy my Spring Boot application along with
 the PostgresSQL database server.
