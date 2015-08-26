@@ -1,11 +1,14 @@
 ---
 layout: post
 title: Deploying Spring and Postgres Web Application using Docker
-subtitle: Something about docker
+subtitle: > 
+  Hands on introduction to Docker by deploying Spring Boot web application,
+  using Postgres as database server and using volume containers to store data
 ---
 
-After getting familiar with Docker, I wanted to play around and try to deploy sample Spring Boot application 
-using PostgresSQL as database server.
+After getting familiar with Docker, I wanted to play around and try to deploy 
+sample [Spring Boot](http://projects.spring.io/spring-boot/) application using 
+[PostgresSQL](http://www.postgresql.org/) as database server.
 
 ## What is Docker?
 
@@ -23,16 +26,16 @@ the downsides of VM approach are:
  - deployment costs on IaaS such as AWS EC2 
 
 Very nice introduction to Docker and detailed explanation how it can be used
-to deploy microservices you can find 
+to deploy microservices please read 
 [here](http://plainoldobjects.com/2014/11/16/deploying-spring-boot-based-microservices-with-docker/).
 
 ## Spring Boot and Docker
 
-Now lets try to build a docker image and run a sample spring boot application using containers.
+Now lets try to build a docker image and run a sample Spring Boot application using containers.
 
 ![Lets hack](http://tdelev.github.io/presentations/docker/images/hacking.gif)
 
-Follows some hands on Docker hacking broken down in six steps.
+Follows some hands on Docker hacking broken down in six simple steps.
 
 ### Step 1
 
@@ -64,12 +67,12 @@ In the second step we build the image running the command:
 docker build -t tdelev/spring_app .
 ```
 
-giving the image name `tdelev/spring_app`. Be carefull with the `.` at the end, it is the context
-directory where Docker builds the image and should only contain our package jar application.
+giving the image name `tdelev/spring_app`. Be careful with the `.` at the end, it is the context
+directory where Docker builds the image and should only contain our packaged jar application.
 
 ### Step 3
 
-Next we download already prepared image with Postgres database server. Just run the command.
+Next we download already prepared image with Postgres database server. Just run the command and wait...
 
 ```
 docker pull postgres
@@ -81,7 +84,7 @@ This will download the official postgres image from [hub.docker.com](https://hub
 
 In this step we will create something called 
 **[data volume container](https://docs.docker.com/userguide/dockervolumes/)** 
-that will be storage for data from our database.
+that will be the storage for data from our database.
 
 ```
 docker create -v /var/lib/postgresql/data --name spring_app_data postgres:9.4
@@ -105,7 +108,7 @@ docker run --volumes-from spring_app_data \
 This command will start a container named `spring_app_pg` in detached mode
 and will set the environment variables `POSTGRES_USER` and `POSTGRES_PASSWORD`.
 It will also mount all volumes from the container `spring_app_data` that we created
-int the previous step.
+in the previous step.
 
 Now we can connect to this database instance using the following command and execute some
 queries or create databases.
@@ -120,7 +123,7 @@ create database demo;
 
 ### Step 6
 
-In the final step we are ready to run the application. To run start a container with 
+In the final step we are ready to run the application. To run, start a container with 
 the following command:
 
 ```
@@ -130,7 +133,7 @@ docker run --name spring_app_container \
 -d tdelev/spring_app
 ```
 
-Here we start a container of the image we created in the Step 2 and we use containers linking
+Here we start a container of the image we created in the Step 2 and use containers linking
 to link with the database instance container, so our Spring Boot application can connect to the
 database instance.
 
@@ -146,6 +149,7 @@ where you substitute `49157` with your PORT number.
 
 ## Presentation
 
-[Here](http://tdelev.github.io/presentations/docker/#/) you can view my presentation on a [JugMK technical session](http://jug.mk/event/tech-session/2015-03-25-javascript-docker.html).
+[Here](http://tdelev.github.io/presentations/docker/#/) you can view my presentation 
+on a [JugMK technical session](http://jug.mk/event/tech-session/2015-03-25-javascript-docker.html).
 
 
