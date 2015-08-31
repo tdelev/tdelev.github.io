@@ -1,0 +1,38 @@
+---
+layout: page
+title: Projects
+---
+<h2 class="page-header">
+  <i class="fa fa-fw fa-android"></i> Android
+</h2>
+
+<div class="project row">
+  {% for p in site.data.android %}
+  <div class="col-md-4 text-center">
+    <a href="{{ p.url }}">
+      <img src="{{ p.img }}" alt="Image" class="img-thumbnail img-responsive img-project"/>
+
+      <h3 class="presentation-title">
+        {{ p.name }}
+      </h3>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<h2 class="page-header">
+  <i class="fa fa-fw fa-android"></i> Web
+</h2>
+
+<div class="project">
+  {% for p in site.data.web %}
+  <a href="{{ p.url }}">
+    <h3 class="presentation-title">
+      {{ p.name }}
+    </h3>
+  </a>
+  {% if p.src %}
+  <i class="fa fa-code"></i> <a href="{{ p.src }}">{{ p.src }}</a>
+  {% endif %}
+  {% endfor %}
+</div>

@@ -154,7 +154,6 @@ hr.small {
 
 .intro-header {
     background-color: #293a46;
-    margin-bottom: 50px
 }
 
 .intro-header a {
@@ -460,4 +459,14 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #0085a1
+}
+.project {
+
+}
+.project > div {
+    margin-bottom: 4px;
+}
+.img-project {
+    width: 140px;
+    height: 140px;
 }

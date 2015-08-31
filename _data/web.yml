@@ -1,0 +1,4 @@
+- name: ТаксиМК
+  url: http://taximk.info/
+  img: http://taximk.info/images/icon.png
+  src: https://github.com/tdelev/taximk-static
