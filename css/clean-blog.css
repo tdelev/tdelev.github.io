@@ -168,15 +168,15 @@ hr.small {
 .intro-header .site-heading,
 .intro-header .post-heading,
 .intro-header .page-heading {
-    padding: 20px 0 50px;
+    padding: 20px 0 20px;
     color: #fff
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     .intro-header .site-heading,
     .intro-header .post-heading,
     .intro-header .page-heading {
-        padding: 40px 0
+        padding: 40px 0;
     }
 }
 
