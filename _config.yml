@@ -8,14 +8,14 @@ url: "http://tdelev.github.io" # the base hostname & protocol for your site
 twitter_username: tdelev
 github_username:  tdelev
 collections:
-  event:
+  article:
     output: true    
 defaults:
   - scope:
       path: ""
-      type: event
+      type: article
     values:
-      layout: events
+      layout: articles
       icon: beer
 permalink: pretty
 # Build settings

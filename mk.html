@@ -1,0 +1,21 @@
+---
+layout: page
+title: MK
+icon: fa-flag
+---
+
+{% assign articles = site.article | sort: 'date' | reverse %}
+{% for article in articles %}
+{% capture this_year %}{{ article.date | date: "%Y" }}{% endcapture %}
+
+{% if this_year != prev_year %}
+<h2 id="{{ this_year }}-ref">{{this_year}}</h2>
+<hr/>
+{% endif %}
+
+<h3 class="post-title"><a href="{{ article.url }}"><i class="fa fa-angle-right"></i> {{ article.title }}</a></h3>
+<p class="post-meta">{{ article.date | date_to_long_string }}</p>
+
+{% assign prev_year = this_year %}
+{% endfor %}
+
