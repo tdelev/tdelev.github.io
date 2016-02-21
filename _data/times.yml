@@ -1,9 +1,13 @@
-- day: Monday
-  start: "15:00"
-  end: "17:00"
-  location: MF Annex Office
 - day: Tuesday
-  start: "12:00"
-  end: "14:00"
+  start: "12:30"
+  end: "15:30"
+  location: 118 (Visual programming)
+- day: Wednesday
+  start: "10:00"
+  end: "12:00"
+  location: MF Annex Office
+- day: Friday
+  start: "13:00"
+  end: "15:00"
   location: MF Annex Office
 
