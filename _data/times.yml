@@ -1,9 +1,9 @@
-- day: Wednesday
+- day: Tuesday
   start: "10:00"
   end: "12:00"
   location: MF Annex Office
-- day: Friday
-  start: "13:00"
-  end: "15:00"
+- day: Wednesday
+  start: "10:00"
+  end: "12:00"
   location: MF Annex Office
 
