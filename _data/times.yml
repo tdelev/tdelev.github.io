@@ -1,8 +1,20 @@
-- day: Wednesday
+- day: 10.06 Friday
+  start: "11:00"
+  end: "13:00"
+  location: MF Annex Office
+- day: 14.06 Tuesday
+  start: "11:00"
+  end: "13:00"
+  location: MF Annex Office
+- day: 15.06 Wednesday
+  start: "11:00"
+  end: "13:00"
+  location: MF Annex Office
+- day: 21.06 Tuesday
   start: "10:00"
   end: "12:00"
   location: MF Annex Office
-- day: Thursday
-  start: "10:00"
-  end: "12:00"
+- day: 23.06 Thursday
+  start: "11:00"
+  end: "13:00"
   location: MF Annex Office
