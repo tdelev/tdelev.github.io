@@ -1,12 +1,28 @@
-- day: 23.08 Tuesday
+- day: Tuesday
+  start: "15:00"
+  end: "17:00"
+  location: MF Annex Office
+- day: Wednesday
+  start: "08:00"
+  end: "09:45"
+  location: Exercises AP (123 FEEIT)
+- day: Wednesday
+  start: "10:00"
+  end: "11:45"
+  location: Exercises SP (B 3.2 FEEIT)
+- day: Thursday
+  start: "12:00"
+  end: "13:45"
+  location: Exercises SP-ENG (112 FEEIT)
+- day: Thursday
   start: "14:00"
-  end: "16:00"
-  location: MF Annex Office
-- day: 01.08 Tuesday
+  end: "17:00"
+  location: Lab. office hours AP - L2 (TMF)
+- day: Friday
   start: "10:00"
-  end: "12:00"
-  location: MF Annex Office
-- day: 02.08 Wednesday
-  start: "10:00"
-  end: "12:00"
+  end: "11:45"
+  location: Exercises AP (315 TMF)
+- day: Friday
+  start: "15:00"
+  end: "17:00"
   location: MF Annex Office
