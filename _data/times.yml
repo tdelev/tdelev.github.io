@@ -1,34 +1,24 @@
-- day: Tuesday
-  start: "09:30"
-  end: "12:30"
-  location: Lab office hours VP (Lab 138 TMF)
-
-- day: Tuesday
-  start: "16:00"
-  end: "17:45"
-  location: Exercises OOP (B 3.2 FEEIT)
-
-- day: Wednesday
-  start: "09:30"
-  end: "11:00"
-  location: Lab office hours (Lab 200AB TMF)
-
-- day: Thursday
-  start: "12:00"
-  end: "13:00"
-  location: Exercises VP (B 3.2 FEEIT)
-
-- day: Thursday
-  start: "14:00"
-  end: "15:45"
-  location: Lab office hours (Lab 3 TMF)
-
-- day: Friday
+- day: Tuesday 23.05.2017
   start: "11:00"
-  end: "12:45"
-  location: Exercises OOP (112 FEEIT)
+  end: "13:00"
+  location: Office
 
-- day: Friday
-  start: "15:00"
-  end: "16:00"
-  location: Exercises VP (123 MF)
+- day: Thursday 25.05.2017
+  start: "11:00"
+  end: "13:00"
+  location: Office
+
+- day: Friday 26.05.2017
+  start: "11:00"
+  end: "13:00"
+  location: Office
+
+- day: Thursday 08.06.2017
+  start: "17:00"
+  end: "19:00"
+  location: Office
+
+- day: Thursday 15.06.2017
+  start: "17:00"
+  end: "19:00"
+  location: Консултации
