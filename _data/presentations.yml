@@ -3,6 +3,11 @@
   date: 2017-03-11
   event: "Javaskop17"
 
+- title: Kotlin, the next hot thing on the JVM
+  url: https://docs.google.com/presentation/d/1Is_TeFui1AY5c2PzjmbXh1LpJq30mgJUR5933whdhUY/pub?start=false&loop=false&delayms=3000
+  date: 2017-01-25
+  event: "JUG Tech Session #20"
+
 - title: Developing RESTfull API with Spring Boot and Jersey
   url: https://docs.google.com/presentation/d/1WsroXqiSWjXr0eOoHRZPX64_jRPFCukCkjf9ds3Vyz4/pub?start=false&loop=false&delayms=3000
   date: 2016-03-02
