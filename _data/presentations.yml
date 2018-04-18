@@ -19,17 +19,17 @@
   event: "jug.mk Tech Session #17"
 
 - title: Developing REST apps for Android
-  url: /presentations/developing_android_rest.pdf
+  url: /presentations/files/developing_android_rest.pdf
   date: 2015-03-25
   event: "Java Day #1"
 
 - title: Play Framework
-  url: /presentations/play_framework_jug.pdf
+  url: /presentations/files/play_framework_jug.pdf
   date: 2011-10-05
   event: "jug.mk Tech Session #10"
 
 - title: SportyPal on Android - The real world of mobile applications
-  url: /presentations/SportyPalonAndroid.ppt
+  url: /presentations/files/SportyPalonAndroid.ppt
   date: 2010-03-03
   event: "jug.mk Tech Session #8"
 
