@@ -1,7 +1,12 @@
+- title: "Functional Programming Showdown: Java vs Kotlin vs Scala"
+  url: https://docs.google.com/presentation/d/e/2PACX-1vRo2godDuFrPtcrMAGInMWHKey55IhV1nVWaYseaZ9YsKeZ9kSxEQoNRt_DifX7Cb4T1Lh_7t1Mp-jg/pub?start=false&loop=false&delayms=60000
+  date: 2018-03-31
+  event: JavaSkop18
+
 - title: Test easy and prosper with Spock Framework
   url: http://delev.me/presentations/spock/
   date: 2017-03-11
-  event: "Javaskop17"
+  event: "JavaSkop17"
 
 - title: Kotlin, the next hot thing on the JVM
   url: https://docs.google.com/presentation/d/1Is_TeFui1AY5c2PzjmbXh1LpJq30mgJUR5933whdhUY/pub?start=false&loop=false&delayms=3000
