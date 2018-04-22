@@ -14,7 +14,8 @@ $(document).ready(function() {
     });
 
     var invited = {
-        "riste": "Ристе и Слободанка"
+        "rs": "Ристе и Слободанка",
+        "bk": "Бажо и Катерина со фамилијата"
     };
 
     var path = window.location.pathname;
