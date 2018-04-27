@@ -8,9 +8,12 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#fullpage').fullpage({
-        anchors:['intro', 'location', 'form']
+        anchors: ['intro', 'location', 'form'],
+        navigation: true,
+        navigationPosition: 'right',
+        controlArrows: true
     });
 
     var invited = {
@@ -23,4 +26,12 @@ $(document).ready(function() {
     var key = getParameterByName('who');
     console.log(key);
     console.log(invited[key]);
+    $('#invited').text(invited[key]);
+
+    $('#down-icon-container').click(function () {
+        $.fn.fullpage.moveSectionDown();
+    });
+    $('#down-icon-container-map').click(function () {
+        $.fn.fullpage.moveSectionDown();
+    });
 });
