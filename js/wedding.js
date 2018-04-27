@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     var invited = {
         "rs": "Ристе и Слободанка",
-        "bk": "Бажо и Катерина со фамилијата"
+        "bk": "Блаже и Катерина"
     };
 
     var path = window.location.pathname;

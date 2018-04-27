@@ -19,19 +19,18 @@ body {
 }
 
 #intro-header {
+    padding: 20px 0;
     background-color: rgba(179, 150, 90, 0.5);
-    height: 30%;
-    width: 100%;
-    position: fixed;
-    top: 0;
     color: #fff;
     text-align: center;
 }
+
 #intro-header h3 {
-    text-transform: uppercase;
     font-weight: normal;
+    font-size: 32px;
     color: #1c1404;
 }
+
 #intro-header h1 {
     font-size: 42px;
     text-transform: uppercase;
@@ -51,7 +50,7 @@ body {
 }
 
 #date {
-    color: #1c1404;
+    color: #000;
     font-weight: bold;
     text-transform: uppercase;
 }
