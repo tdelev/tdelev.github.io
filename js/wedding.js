@@ -36,4 +36,7 @@ $(document).ready(function () {
     $('#down-icon-container-map').click(function () {
         $.fn.fullpage.moveSectionDown();
     });
+    $('#up-icon-container').click(function () {
+        $.fn.fullpage.moveSectionUp();
+    });
 });

@@ -15,7 +15,7 @@ body {
 /* Defining each section background and styles
 * --------------------------------------- */
 #section-intro {
-    background-image: url('/images/intro.jpg');
+    background: url('/images/intro.jpg') center center;
 }
 
 #intro-header {
@@ -92,6 +92,23 @@ body {
     margin-top: 5px;
     font-size: 5em !important;
     color: rgb(179, 150, 90);
+}
+
+#up-icon-container {
+    width: 90px;
+    height: 90px;
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
+    border-radius: 70px;
+    position: fixed;
+    top: 290%;
+    left: 2%;
+    cursor: pointer;
+    text-align: center;
+}
+
+#up-icon-container:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 #section-location {
