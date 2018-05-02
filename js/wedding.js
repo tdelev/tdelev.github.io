@@ -22,8 +22,8 @@ $(document).ready(function () {
     };
 
     var key = getParameterByName('who');
-    console.log(key);
-    console.log(invited[key]);
+    // console.log(key);
+    // console.log(invited[key]);
     var guest = invited[key];
     var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeBVtaqr3Zodpko414m1VirgYnCTxLlWCwh4jceJcgKwZyEQA/viewform?embedded=true';
     formUrl = formUrl + '&entry.229359151=' + guest;
@@ -37,6 +37,6 @@ $(document).ready(function () {
         $.fn.fullpage.moveSectionDown();
     });
     $('#up-icon-container').click(function () {
-        $.fn.fullpage.moveSectionUp();
+        $.fn.fullpage.moveTo('intro');
     });
 });
