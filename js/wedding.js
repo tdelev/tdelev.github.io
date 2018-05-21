@@ -84,6 +84,7 @@ $(document).ready(function () {
     // console.log(key);
     // console.log(invited[key]);
     var guest = invited[key] || "";
+    if(key === 'armedia') guest = "";
     var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeBVtaqr3Zodpko414m1VirgYnCTxLlWCwh4jceJcgKwZyEQA/viewform?embedded=true';
     formUrl = formUrl + '&entry.229359151=' + guest;
     $('#google-form').attr('src', formUrl);
