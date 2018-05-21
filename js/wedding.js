@@ -77,7 +77,7 @@ $(document).ready(function () {
         "jo": "Јанаки и Олгица",
         "tamara": "Тамара",
         "boka": "Бока",
-        "armedia": "Armeida"
+        "armedia": "Armedia MK"
     };
 
     var key = getParameterByName('who');
