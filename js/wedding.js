@@ -19,6 +19,7 @@ $(document).ready(function () {
     var invited = {
         // Tomche
         "im": "Иван и Маја",
+        "blaze": "Блаже",
         "ai": "Аце и Ивана",
         "bt": "Борче и Тамара",
         "ls": "Лазе и Спаска",
