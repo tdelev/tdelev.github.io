@@ -74,7 +74,10 @@ $(document).ready(function () {
         "ros": "Росана",
         "zorica": "Зорица",
         "katerina": "Катерина",
-        "jo": "Јанаки и Олгица"
+        "jo": "Јанаки и Олгица",
+        "tamara": "Тамара",
+        "boka": "Бока",
+        "armedia": "Armeida"
     };
 
     var key = getParameterByName('who');
