@@ -45,6 +45,7 @@ $(document).ready(function () {
         "miki": "Мирослав",
         "dada": "Живка, Jörn и Емил",
         "machka": "Аце и Тамара",
+        "dragan": "Драган",
         // Nadica
         "rb": "Родна и Благој",
         "mk": "Маја и Коста",
