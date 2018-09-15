@@ -5,14 +5,15 @@ subtitle: >
   Implementing Minesweeper clone in TypeScript and React
 ---
 
-One of the games that I occasionally play to relax is [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)).
+One of the games that I occasionally like play and relax is [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)).
 
-Since I wanted to learn [React](https://reactjs.org/) and I'm already familiar with other JavaScript front-end technologies such as [Angular](https://angular.io), implementing this game was an interesting challenge. 
+I have extensive experience with other JavaScript front-end technologies such as [Angular](https://angular.io).
+Being open to new technologies I have also tried React [React](https://reactjs.org/) in few hello world projects.
+Implementing Minesweeper in TypeScript and React seemed like an interesting challenge and opportunity to learn more. 
 
 In this post I will try to explain how I did it and maybe learn you how to implement your clone of this or maybe some other game.
 
-If you just want to browse the final solution follow the [GitHub repo link](https://github.com/tdelev/minesweeper-react) or if you just want to [play it click here](todo). 
-
+If you just want to browse the final solution follow the [GitHub repo link](https://github.com/tdelev/minesweeper-react) or if you just want to [play it click here](https://delev.me/minesweeper-react).
 
 ## Before we start
 
@@ -26,7 +27,10 @@ You will need to have installed (or install) on your machine:
 
 We will bootstrap the React project with using the option `--script-version=react-script-ts` that would instruct `create-react-app` to use [Create React App (with TypeScript)](https://github.com/wmonk/create-react-app-typescript) configuration.
 
-[TypeScript + React](https://medium.com/@amcdnl/react-typescript-%EF%B8%8F-647aa7d054a9) love
+> In my previous experience with Angular I find TypeScript a real joy to work.
+And coming from a daily experience with statically typed languages (Java, Kotlin) I was not interested in pure ES6.
+Also learning and investing time in Flow was not worth it having a previous (great) experience with TypeScript.
+Read [this great article](https://medium.com/@amcdnl/react-typescript-%EF%B8%8F-647aa7d054a9) to find out more about TypeScript + React.
   
 ```bash
 npx create-react-app --scripts-version=react-scripts-ts minesweeper
@@ -39,6 +43,7 @@ cd minesweeper
 npm start
 # or yarn start
 ```
+
 
 ## Structuring the React app
 
@@ -110,17 +115,19 @@ Each `Mine` has:
 
 * `position` (x,y coordinates) in the matrix of mines
 * `isOpened` a boolean field which is true when a mine field is opened
-* `bombs` a number which encodes if there is a bomb in this mine (-1) or if positive it is a count of bombs around that mine
+* `bombs` a number which encodes if there is a bomb (-1) or if positive it is a count of bombs around that mine.
 * `isFlagged` which represents if the mine is marked (flagged) by the user as potential bomb.
 
-> It was really hard to get the naming right for the Mine domain.
+> It was really hard to get the naming right for the game domain, having to deal with mines/bombs, mine field as single field with mine or field of mines :).
 
-The `Game` class represents the state of the Minesweeper game which is the two dimensional array of mines and auxiliary fields for the count of total bombs and state if there is exploded bomb (game is finished). 
+The `Game` class represents the state of the Minesweeper game which is the two dimensional array of mines.
+Also it contains auxiliary fields for the count of total bombs and state if there is exploded bomb (game is finished). 
 
 ## MineSquare component
 
-The `MineSquare` component will be **stateless** (pure functional).
-That means that it should render the property `field: Mine` and just propagate an event when interaction happens (instead of keeping and mutating state).
+The `MineSquare` component will be **stateless**.
+That means that it should render the property `field: Mine` and just propagate an event when interaction happens.
+It will not keep or mutate any state.
 
 ```tsx
 export class MineSquare extends React.Component<MineProps> {
@@ -167,15 +174,16 @@ Depending on the state of the `field: Mine` we will render the different content
 The function `renderField(field: Mine)` does exactly that.
 So when the field is opened (user explored that field) it can be:
 
-* `bombs == -1` so we render a bomb (using FontAwesome bomb icon for this)
+* `bombs == -1` so we render a bomb (using [FontAwesome](https://fontawesome.com/v4.7.0/) bomb icon for this)
 * `bombs == 0` the field is just empty
 * `bombs > 0` we render the number of bombs in that field.
 
+When the field is opened and flagged we render a flag icon.
+
 The component propagates the mouse `onClick` event to indicate user interaction with this field.
 
-
-> In minesweeper there are two types of interaction user can have with field, to explore it or to flag it as potential mine.
-Maybe better choice was to represent these with different events such as mouse **left** and **right** click.
+> In minesweeper there are two types of interaction user can have with a field, to explore it or to flag it as potential mine.
+Maybe better choice is to represent these with different events such as mouse **left** and **right** click.
 But because of a buggy behaviour of the right click, my final choice was to encode these two different events with only left click and a pressed state of a certain keyboard key (_ctrl_ in my case). 
 
 ## MineField component
@@ -242,7 +250,7 @@ export interface TimerProps {
     elapsedSeconds: number;
 }
 ```
-k
+
 Here is the implementation of the `secondsToString` function.
  
 ```typescript
@@ -265,14 +273,14 @@ But instead of relying on myriad of external modules for simple functions such a
 ## Game state
 
 So far we have implemented the simple (stateless) components of the game.
-To make the game alive we need to implement initialization of new game state (new game) and all possible modifications.
+To make the game alive we need to implement initialization of new game state (new game action) and all possible modifications.
 
 ![Game State Loop](/images/minesweeper/game_state_loop.png)
 
 Most of the simple games are following this kind of game loop as in the image above.
 The users through the UI are having interactions with the game and generating actions.
-Sometimes actions might come just from the time passing, but Minesweeper is not that kind of game.
-Then the game acts on these actions by changing the state of the game, which then needs to be rendered back in the UI.
+Sometimes actions are generated automatically as the time passing, but Minesweeper is not that kind of game.
+On each action the state of the game is modified and then rendered back on the UI.
 
 In the case of Minesweeper, the user can make two actions:
 
@@ -299,50 +307,50 @@ const dx = [-1, 0, 1, -1, 1, -1, 0, 1];
 const dy = [-1, -1, -1, 0, 0, 1, 1, 1];
 
 function newGame(rows: number, columns: number): Game {
-    let totalBombs = 0;
-    let estimatedBombs = Math.floor(rows * columns * BOMBS_PROBABILITY);
-    const state = Array(rows).fill(null).map((_, i: number) => {
-        return Array(columns).fill(null).map((_, j: number) => {
-            const isBomb = Math.random() < BOMBS_PROBABILITY;
-            if (isBomb && totalBombs < estimatedBombs) {
-                totalBombs += 1;
-                return new Mine({ x: i, y: j }, false, -1, false);
+    let totalMines = 0;
+    let estimatedMines = Math.floor(rows * columns * BOMBS_PROBABILITY);
+    const state = Array(rows).fill(null).map((r, i: number) => {
+        return Array(columns).fill(null).map((c, j: number) => {
+            const isMine = Math.random() < BOMBS_PROBABILITY;
+            if (isMine) {
+                totalMines += 1;
+                return new Mine({x: i, y: j}, false, -1, false);
             } else {
-                return new Mine({ x: i, y: j }, false, 0, false);
+                return new Mine({x: i, y: j}, false, 0, false);
             }
         });
     });
-    if (totalBombs < estimatedBombs) {
-        return newGame(rows, columns);
+    while (totalMines < estimatedMines) {
+        const randX = Math.floor(Math.random() * rows);
+        const randY = Math.floor(Math.random() * columns);
+        if (!isMine(state[randX][randY])) {
+            ++totalMines;
+            state[randX][randY].bombs = -1;
+        }
+    }
+    if (totalMines > estimatedMines) {
+        const mines = state.map(row => row.filter(mine => !isMine(mine)))
+            .reduce((prev, current) => prev.concat(current));
+
+        while (totalMines > estimatedMines) {
+            const randMineIndex = Math.floor(Math.random() * mines.length);
+            mines[randMineIndex].bombs = 0;
+            --totalMines;
+        }
     }
     fillBombsCount(state);
-    return new Game(state, totalBombs);
-}
 
-function fillBombsCount(state: Array<Array<Mine>>) {
-    state.forEach((row, _) => {
-        row.forEach((mine, _) => {
-            if (isMine(mine)) {
-                traverseNeighbours(state, mine, mineNeighbour => {
-                    if (!isMine(mineNeighbour)) {
-                        mineNeighbour.bombs += 1;
-                    }
-                    return mineNeighbour;
-                });
-            }
-        });
-    });
+    return new Game(state, totalMines);
 }
 
 function traverseNeighbours(fields: Array<Array<Mine>>, startMine: Mine, onField: (field: Mine) => Mine) {
+    let inBounds = (point: Point) => point.x >= 0 && point.x < fields.length &&
+        point.y >= 0 && point.y < fields[0].length;
     const start = startMine.position;
-    dx.map((x, i) => [x, dy[i]])
-        .map(deltas => [start.x + deltas[0], start.y + deltas[1]])
-        .filter(indexes => indexes[0] >= 0 
-        && indexes[0] < fields.length 
-        && indexes[1] >= 0 
-        && indexes[1] < fields[0].length)
-        .map(indexes => onField(fields[indexes[0]][indexes[1]]));
+    dx.map((x, i) => ({dx: x, dy: dy[i]}))
+        .map(deltas => ({x: start.x + deltas.dx, y: start.y + deltas.dy}))
+        .filter((point: Point) => inBounds(point))
+        .map((point: Point) => onField(fields[point.x][point.y]));
     /*for (let i = 0; i < dx.length; ++i) {
         let ii = start.x + dx[i];
         let jj = start.y + dy[i];
@@ -374,12 +382,12 @@ function update(game: Game, f: ((b: Mine) => Mine), exploded = false): Game {
 
 The function `markMine` is used for two user actions.
 The first action is when user wants to mark a field `opened` as a potential mine.
-We do that only when the current state of the `opened` field is not opened by updating the game state where set that field as flagged and not opened.
-The second action that user can do, when he marks a field `opened` that is already opened is to explore neighbour mines of that field.
+We do that only when the current state of the field is not opened by updating the game state where set that field as flagged and not opened.
+The second possible action for a user is to explore already opened field that has a count of bombs.
  
 ```typescript
 function markMine(game: Game, opened: Mine): Game {
-    if (opened.isOpened && !opened.isFlagged) return exploreMine(game, opened);
+    if (opened.isOpened && !opened.isFlagged) return exploreOpenedField(game, opened);
     return update(game, (field: Mine) => {
         if (field == opened) {
             return new Mine(field.position, false, field.bombs, !field.isFlagged);
@@ -390,11 +398,14 @@ function markMine(game: Game, opened: Mine): Game {
 }
 ```
 
-#### Exploring mine
+#### Exploring open field
 
+To explore open field is potentially game ending action that needs to explore all neighbour fields of a opened field.
+The opened field needs to have all its neighbour bombs flagged.
+If a field that is bomb is not flagged the game ends.
 
 ```typescript
-function exploreMine(game: Game, opened: Mine): Game {
+function exploreOpenedField(game: Game, opened: Mine): Game {
     const updated = update(game, (field: Mine) => field);
     let hitMine = false;
     traverseNeighbours(updated.state, opened, field => {
@@ -416,6 +427,11 @@ function exploreMine(game: Game, opened: Mine): Game {
     return updated;
 }
 ```
+
+To implement this function we use the generic `traverseNeighbours` and for each neighbour field that is **not opened** and **not flagged**:
+
+* if it's a mine we should end the game
+* if it's not we should set as opened and if we open a zero-bomb field we should open all other connected zero-bomb fields.
 
 ### Open mine
 
@@ -453,6 +469,8 @@ function openMine(game: Game, field: Mine): Game {
 
 ### Traversing connected zero-bomb fields
 
+The function `updateZeros` traverses using a recursive DFS (Depth-First Search) algorithm all connected zero-bomb fields.
+
 ```typescript
 function updateZeros(fields: Array<Array<Mine>>, start: Mine) {
     traverseNeighbours(fields, start, (field => {
@@ -469,18 +487,35 @@ function updateZeros(fields: Array<Array<Mine>>, start: Mine) {
 
 ### Check if game is completed
 
+On each state modifying action we need to check if the state of game has reached an end state.
+For the game Minesweeper that state is when all the fields are explored correctly.
+That means that a mine field that contain bomb is flagged and otherwise it's opened.
+ 
 ```typescript
 function checkCompleted(game: Game): boolean {
     const and = (a: boolean, b: boolean) => a && b;
     return game.state.map(row => {
         return row.map(field => {
-            return isMineProcessed(field);
+            return isMineCovered(field);
         }).reduce(and);
     }).reduce(and);
 }
+function isMineCovered(field: Mine) {
+    if (isMine(field)) {
+        return field.isFlagged;
+    } else {
+        return field.isOpened;
+    }
+}
 ```
 
+The function `checkCompleted` checks for the end state by iterating all fields and mapping them in to a `boolean` value.
+The `true` value means field is explored correctly and `false` means not explored correctly.
+Combining all these values using logical AND would yield final `true` only if all fields are explored correctly, which would mean the end state is reached.
+  
 ### Count flagged fields
+
+The function `countFlagged` is used to count all the flagged fields in the game state to show the current progress indicator.
 
 ```typescript
 function countFlagged(game: Game): number {
@@ -495,6 +530,152 @@ function countFlagged(game: Game): number {
 
 ## Putting all together in App component
 
-Now we need to put all together by implementing all the actions in the game as modifications of the game state.
-The actions in the game come from the user interaction with components as events.
-Handling these events means modifying the state, which then needs to be rendered on the UI.
+Once we have implemented all the game state modifications and checks we can put it all together.
+The actual game state is initialized and modified in the component `App`.
+
+```tsx
+class App extends React.Component<AppProps> {
+    controlDown = false;
+    startTime: Date;
+    state = {
+        rows: this.props.rows,
+        columns: this.props.columns,
+        game: game.newGame(this.props.rows, this.props.columns),
+        completed: false,
+        flagged: 0,
+        elapsedSeconds: 0
+    };
+
+    isControlKey(code: string) {
+        return code === "ControlLeft" || code === "ControlRight";
+    }
+
+    timer: any;
+
+    componentDidMount() {
+        document.onkeydown = (e: KeyboardEvent) => {
+            if (this.isControlKey(e.code)) {
+                this.controlDown = true;
+            }
+        };
+        document.onkeyup = (e: KeyboardEvent) => {
+            if (this.isControlKey(e.code)) {
+                this.controlDown = false;
+            }
+        };
+        this.startTimer();
+    }
+
+    startTimer() {
+        this.startTime = new Date();
+        this.timer = setInterval(() => {
+            const now = new Date();
+            const elapsedMs = now.getTime() - this.startTime.getTime();
+            this.setState({
+                elapsedSeconds: Math.floor(elapsedMs / 1000)
+            });
+        }, 1000);
+    }
+
+    updateState(field: Mine, updateFn: (game: Game, field: Mine) => Game) {
+        this.setState((prevState: any, props) => {
+            const updatedGame = updateFn(prevState.game, field);
+            const completed = game.checkCompleted(updatedGame);
+            if (completed || updatedGame.exploded) {
+                clearInterval(this.timer);
+            }
+            return {
+                game: updatedGame,
+                completed: completed,
+                flagged: game.countFlagged(updatedGame)
+            };
+        });
+    }
+
+    public onSquareLeftClick(field: Mine) {
+        if (this.controlDown) {
+            this.updateState(field, game.openMine);
+        } else {
+            this.updateState(field, game.markMine);
+        }
+    }
+
+    startGame(rows: number, columns: number) {
+        clearInterval(this.timer);
+        this.startTimer();
+        this.setState({
+            rows: rows,
+            columns: columns,
+            game: game.newGame(rows, columns),
+            completed: false,
+            flagged: 0,
+            elapsedSeconds: 0
+        });
+    }
+
+    public render() {
+        return (
+            <div className="game">
+                <div className="menu">
+                    <ul className="level-menu">
+                        <li onClick={(e) => this.startGame(6, 8)}>Easy</li>
+                        <li onClick={(e) => this.startGame(10, 14)}>Medium</li>
+                        <li onClick={(e) => this.startGame(20, 30)}>Hard</li>
+                    </ul>
+                </div>
+                <MineField
+                    game={this.state.game}
+                    onLeftClick={(field: Mine) => this.onSquareLeftClick(field)}/>
+                <Timer elapsedSeconds={this.state.elapsedSeconds}/>
+                <div className='status'>Completed: {this.state.completed ? 'YES' : 'NO'}</div>
+                <div className='status'>{this.state.flagged}/{this.state.game.totalBombs}</div>
+                <div className='help'>
+                    <h3>How to play</h3>
+                    <ol>
+                        <li>Left Click to mark possible mine or to explore fields around opened field</li>
+                        <li>Ctrl + Left Click to open field</li>
+                    </ol>
+                </div>
+            </div>
+        );
+    }
+}
+
+export interface AppProps {
+    rows: number;
+    columns: number;
+}
+```
+
+The final piece of the puzzle, the `App` component is the only stateful component that keeps and modifies the game state.
+The state of the component contains:
+ 
+* the number of `rows` and `columns` of the Minesweeper grid
+* the game state
+* the elapsed seconds since the game started
+* the number of flagged fields (computed from the game state)
+* and a boolean flag indicated if the game is completed (also computed from the game state).
+
+The state is initialized at the beginning of the component on a new game state.
+We use the React lifecycle method `componentDidMount` to bind two keyboard events `onkeydown` and `onkeyup` to track the state of _ctrl_ key.
+We also start a timer using JavaScript `setTimeout` function that we use to modify the elapsed seconds state.
+
+The function `updateState` is used to update the state of the React component using `this.setState`.
+This is a HOF (higher-order function) that accepts the actual game state modification function as `updateFn` as argument.
+Once the game state is modified, the final state of the component is updated and the UI should be updated.
+This function is called on the user generated event `onSquareLeftClick`.
+When the `ctrl` button is down a mine is opened and otherwise mine is marked (or explored).
+
+The actual rendering of the UI is pretty simple.
+We render a simple menu of three links that allow to start new game with the chosen difficulty.
+Then we render the the `MineField` component with the current game state and the `Timer` component showing the elapsed seconds.
+Finally we render a information on the current status of the game, such as is it completed and number of flagged fields vs total bombs. 
+
+## Conclusion
+
+Implementing any simple game is an interesting programming challenge.
+The most challenging part always is to implement the game state and state modification functions.
+I tried to implement them using functional programming techniques, where most of the functions are pure.
+Also, three out of four React components are stateless (which is very similar to pure functions).
+
+Hopefully sharing the solution and writing this post will encourage you to implement your own clone of Minesweeper or other game and share your experience. 
