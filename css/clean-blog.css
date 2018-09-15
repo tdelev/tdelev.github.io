@@ -3,6 +3,7 @@
  * Copyright 2014 Start Bootstrap
  * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
  */
+@import "monokai.css";
 
 body {
     font-size: 20px;
@@ -266,7 +267,7 @@ hr.small {
     color: gray;
     font-size: 18px;
     font-style: italic;
-    margin-top: 0
+    margin-top: 0;
 }
 
 .post-preview > .post-meta > a {
@@ -482,6 +483,16 @@ body {
 }
 
 .presentation-meta {
+    color: gray;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+}
+pre code {
+    color: #eee;
+}
+
+.post-header > .post-meta {
     color: gray;
     font-size: 18px;
     font-style: italic;
