@@ -13,7 +13,7 @@ Implementing Minesweeper in TypeScript and React seemed like an interesting chal
 
 In this post I will try to explain how I did it and maybe encourage or learn you how to implement your clone of this or maybe some other game.
 
-If you're just interested in seeing the final solution visit or clone the [GitHub repository](https://github.com/tdelev/minesweeper-react) orr if you just want to **play** it click [here](https://delev.me/minesweeper-react).
+If you're just interested in seeing the final solution visit or clone the [GitHub repository](https://github.com/tdelev/minesweeper-react) or if you just want to **play** it click [here](https://delev.me/minesweeper-react).
 
 ## Before we start
 
