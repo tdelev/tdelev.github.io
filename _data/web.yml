@@ -1,4 +1,11 @@
+- name: Minesweeper
+  url: https://delev.me/minesweeper-react/
+  img: https://imgur.com/r9dS8m1
+  src: https://github.com/tdelev/minesweeper-react
+  active: true
+
 - name: ТаксиМК
   url: http://taximk.info/
   img: http://taximk.info/images/icon.png
   src: https://github.com/tdelev/taximk-static
+  active: false

@@ -29,7 +29,7 @@ icon: fa-code-fork
   {% for p in site.data.web %}
   <a href="{{ p.url }}">
     <h3 class="presentation-title">
-      {{ p.name }}
+      {{ p.name }} {% unless p.active %}<small>Discontinued</small>{% endunless %}
     </h3>
   </a>
   {% if p.src %}
